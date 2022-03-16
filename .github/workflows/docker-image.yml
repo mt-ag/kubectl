@@ -14,7 +14,7 @@ jobs:
     - name: Build the image
       run: docker build . --file kubectl-1-21.Dockerfile --tag demtag/kubectl:1.21
     - name: Login to registry
-      run: docker login --username foo --password-stdin
+      run: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
