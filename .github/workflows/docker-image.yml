@@ -11,12 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the image
-      run: docker build . --file kubectl-1-21.Dockerfile --tag demtag/kubectl:1.21
+    - name: Build the images
+      run: |
+        docker build . --file kubectl-1-21.Dockerfile --tag demtag/kubectl:1.21
+        docker build . --file kubectl-1-22.Dockerfile --tag demtag/kubectl:1.22
+        docker build . --file kubectl-1-23.Dockerfile --tag demtag/kubectl:1.23
     - name: Login to registry
       run: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Push the image
-      run: docker push demtag/kubectl:1.21
+    - name: Push the images
+      run: |
+        docker push demtag/kubectl:1.21 
+        docker push demtag/kubectl:1.22
+        docker push demtag/kubectl:1.23
