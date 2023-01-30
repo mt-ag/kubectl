@@ -16,6 +16,8 @@ jobs:
         docker build . --file kubectl-1-21.Dockerfile --tag demtag/kubectl:1.21
         docker build . --file kubectl-1-22.Dockerfile --tag demtag/kubectl:1.22
         docker build . --file kubectl-1-23.Dockerfile --tag demtag/kubectl:1.23
+        docker build . --file kubectl-1-23.Dockerfile --tag demtag/kubectl:1.24
+        docker build . --file kubectl-1-23.Dockerfile --tag demtag/kubectl:1.25
     - name: Login to registry
       run: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
       env:
@@ -26,3 +28,5 @@ jobs:
         docker push demtag/kubectl:1.21 
         docker push demtag/kubectl:1.22
         docker push demtag/kubectl:1.23
+        docker push demtag/kubectl:1.24
+        docker push demtag/kubectl:1.25

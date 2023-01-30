@@ -1,0 +1,20 @@
+name: PR Validation
+
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the images
+      run: |
+        docker build . --file kubectl-1-21.Dockerfile --tag demtag/kubectl:1.21
+        docker build . --file kubectl-1-22.Dockerfile --tag demtag/kubectl:1.22
+        docker build . --file kubectl-1-23.Dockerfile --tag demtag/kubectl:1.23
+        docker build . --file kubectl-1-23.Dockerfile --tag demtag/kubectl:1.24
+        docker build . --file kubectl-1-23.Dockerfile --tag demtag/kubectl:1.25
